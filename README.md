@@ -6,9 +6,9 @@ This project leverages CodeBERT and CodeT5+ to generate embeddings for programmi
 
 # Folder Structure
 ML-Code-Analysis/
-├── dataset.xlsx              # Dataset file
-├── ML-CodeBERT.py            # CodeBERT-based analysis
-├── ML-CodeT5+.py             # CodeT5+ based analysis
+├── dataset.csv              # Dataset file
+├── ML-CodeBERT.ipynb           # CodeBERT-based analysis
+├── ML-CodeT5+.ipynb            # CodeT5+ based analysis
 ├── README.md                 # Documentation
 ├── requirements.txt          # Python dependencies
 
