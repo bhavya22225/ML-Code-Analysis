@@ -1,0 +1,1466 @@
+Question,Correct Solution
+Reverse a String,"public String reverseString(String s) {
+    return new StringBuilder(s).reverse().toString();
+}"
+Reverse a String,"public String reverseString(String s) {
+    String reversedStr = """";
+    for (int i = s.length() - 1; i >= 0; i--) {
+        reversedStr += s.charAt(i);
+    }
+    return reversedStr;
+}"
+Reverse a String,"public String reverseString(String s) {
+    if (s.isEmpty()) {
+        return s;
+    }
+    return reverseString(s.substring(1)) + s.charAt(0);
+}"
+Reverse a String,"public String reverseString(String s) {
+    Stack<Character> stack = new Stack<>();
+    for (char c : s.toCharArray()) {
+        stack.push(c);
+    }
+    StringBuilder reversedStr = new StringBuilder();
+    while (!stack.isEmpty()) {
+        reversedStr.append(stack.pop());
+    }
+    return reversedStr.toString();
+}"
+Reverse a String,"public String reverseString(String s) {
+    char[] chars = s.toCharArray();
+    int left = 0, right = chars.length - 1;
+    while (left < right) {
+        char temp = chars[left];
+        chars[left] = chars[right];
+        chars[right] = temp;
+        left++;
+        right--;
+    }
+    return new String(chars);
+}"
+Check for Palindrome,"def is_palindrome(s):
+    return s == ''.join(reversed(s))"
+Check for Palindrome,"public boolean isPalindrome(String s) {
+    int n = s.length();
+    for (int i = 0; i < n / 2; i++) {
+        if (s.charAt(i) != s.charAt(n - i - 1)) {
+            return false;
+        }
+    }
+    return true;
+}"
+Check for Palindrome,"public boolean isPalindrome(String s) {
+    if (s.length() <= 1) {
+        return true;
+    }
+    if (s.charAt(0) != s.charAt(s.length() - 1)) {
+        return false;
+    }
+    return isPalindrome(s.substring(1, s.length() - 1));
+}"
+Check for Palindrome,"public boolean isPalindrome(String s) {
+    int left = 0, right = s.length() - 1;
+    while (left < right) {
+        if (s.charAt(left) != s.charAt(right)) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}"
+Check for Palindrome,"public boolean isPalindrome(String s) {
+    Stack<Character> stack = new Stack<>();
+    for (char c : s.toCharArray()) {
+        stack.push(c);
+    }
+    StringBuilder reversedStr = new StringBuilder();
+    while (!stack.isEmpty()) {
+        reversedStr.append(stack.pop());
+    }
+    return s.equals(reversedStr.toString());
+}"
+Sum of List Elements,"public int sumOfElements(int[] arr) {
+    int sum = 0;
+    for (int num : arr) {
+        sum += num;
+    }
+    return sum;
+}"
+Sum of List Elements,"public int sumOfElements(int[] arr) {
+    return sumHelper(arr, 0);
+}
+private int sumHelper(int[] arr, int index) {
+    if (index == arr.length) {
+        return 0;
+    }
+    return arr[index] + sumHelper(arr, index + 1);
+}"
+Sum of List Elements,"import java.util.Arrays;
+public int sumOfElements(int[] arr) {
+    return Arrays.stream(arr).sum();
+}"
+Sum of List Elements,"public int sumOfElements(int[] arr) {
+    return Arrays.stream(arr).reduce(0, (a, b) -> a + b);
+}"
+Sum of List Elements,"import java.util.stream.IntStream;
+public int sumOfElements(int[] arr) {
+    return IntStream.of(arr).sum();
+}"
+Find Maximum Element in a List,"import java.util.Collections;
+import java.util.List;
+
+public int findMax(List<Integer> list) {
+    return Collections.max(list);
+}
+"
+Find Maximum Element in a List,"public int findMax(List<Integer> list) {
+    int max = Integer.MIN_VALUE;
+    for (int num : list) {
+        if (num > max) {
+            max = num;
+        }
+    }
+    return max;
+}
+"
+Find Maximum Element in a List,"import java.util.List;
+
+public int findMax(List<Integer> list) {
+    return list.stream().max(Integer::compare).orElseThrow();
+}
+"
+Find Maximum Element in a List,"public int findMax(List<Integer> list, int n) {
+    if (n == 1) return list.get(0);
+    return Math.max(list.get(n - 1), findMax(list, n - 1));
+}
+"
+Find Maximum Element in a List,"import java.util.List;
+
+public int findMax(List<Integer> list) {
+    final int[] max = {Integer.MIN_VALUE};
+    list.forEach(num -> {
+        if (num > max[0]) max[0] = num;
+    });
+    return max[0];
+}
+"
+Remove Duplicates from a List,"import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public List<Integer> removeDuplicates(List<Integer> list) {
+    return new ArrayList<>(new HashSet<>(list));
+}
+"
+Remove Duplicates from a List,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> removeDuplicates(List<Integer> list) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer num : list) {
+        if (!result.contains(num)) {
+            result.add(num);
+        }
+    }
+    return result;
+}
+"
+Remove Duplicates from a List,"import java.util.List;
+import java.util.stream.Collectors;
+
+public List<Integer> removeDuplicates(List<Integer> list) {
+    return list.stream().distinct().collect(Collectors.toList());
+}
+"
+Remove Duplicates from a List,"import java.util.List;
+
+public List<Integer> removeDuplicates(List<Integer> list, int index) {
+    if (index == list.size()) return list;
+    if (list.subList(0, index).contains(list.get(index))) {
+        list.remove(index);
+        return removeDuplicates(list, index);
+    }
+    return removeDuplicates(list, index + 1);
+}
+"
+Remove Duplicates from a List,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> removeDuplicates(List<Integer> list) {
+    List<Integer> result = new ArrayList<>();
+    list.forEach(num -> {
+        if (!result.contains(num)) result.add(num);
+    });
+    return result;
+}
+"
+Count Vowels in a String,"public int countVowels(String s) {
+    int count = 0;
+    for (char c : s.toLowerCase().toCharArray()) {
+        if (""aeiou"".indexOf(c) != -1) {
+            count++;
+        }
+    }
+    return count;
+}
+"
+Count Vowels in a String,"public long countVowels(String s) {
+    return s.chars().filter(c -> ""aeiouAEIOU"".indexOf(c) != -1).count();
+}
+"
+Count Vowels in a String,"public int countVowels(String s) {
+    if (s.isEmpty()) return 0;
+    char c = s.charAt(0);
+    return (isVowel(c) ? 1 : 0) + countVowels(s.substring(1));
+}
+
+private boolean isVowel(char c) {
+    return ""aeiouAEIOU"".indexOf(c) != -1;
+}
+"
+Count Vowels in a String,"public int countVowels(String s) {
+    String withoutVowels = s.replaceAll(""[aeiouAEIOU]"", """");
+    return s.length() - withoutVowels.length();
+}
+"
+Count Vowels in a String,"public int countVowels(String s) {
+    final int[] count = {0};
+    s.chars().forEach(c -> {
+        if (""aeiouAEIOU"".indexOf(c) != -1) count[0]++;
+    });
+    return count[0];
+}
+"
+Factorial Calculation,"public int factorial(int n) {
+    int result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+"
+Factorial Calculation,"public int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+"
+Factorial Calculation,"import java.util.stream.IntStream;
+
+public int factorial(int n) {
+    return IntStream.rangeClosed(1, n).reduce(1, (x, y) -> x * y);
+}
+"
+Factorial Calculation,"public int factorial(int n, int[] memo) {
+    if (n <= 1) return 1;
+    if (memo[n] != 0) return memo[n];
+    return memo[n] = n * factorial(n - 1, memo);
+}
+"
+Factorial Calculation,"public int factorial(int n) {
+    return factorialHelper(n, 1);
+}
+
+private int factorialHelper(int n, int acc) {
+    if (n <= 1) return acc;
+    return factorialHelper(n - 1, n * acc);
+}
+"
+Generate Fibonacci Sequence,"public int[] fibonacci(int n) {
+    int[] fib = new int[n];
+    if (n > 0) fib[0] = 0;
+    if (n > 1) fib[1] = 1;
+    for (int i = 2; i < n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+    return fib;
+}
+"
+Generate Fibonacci Sequence,"public int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+"
+Generate Fibonacci Sequence,"public int fibonacci(int n, int[] memo) {
+    if (n <= 1) return n;
+    if (memo[n] != 0) return memo[n];
+    return memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+}
+"
+Generate Fibonacci Sequence,"public int fibonacci(int n) {
+    if (n <= 1) return n;
+    int a = 0, b = 1;
+    for (int i = 2; i <= n; i++) {
+        int temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return b;
+}
+"
+Generate Fibonacci Sequence,"import java.util.stream.IntStream;
+
+public int[] fibonacci(int n) {
+    return IntStream.range(0, n)
+        .map(i -> i < 2 ? i : fibonacci(i - 1) + fibonacci(i - 2))
+        .toArray();
+}
+"
+Check for Prime Number,"public boolean isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+"
+Check for Prime Number,"public boolean isPrime(int n, int i) {
+    if (n <= 2) return n == 2;
+    if (n % i == 0) return false;
+    if (i * i > n) return true;
+    return isPrime(n, i + 1);
+}
+
+public boolean isPrime(int n) {
+    return isPrime(n, 2);
+}
+"
+Check for Prime Number,"public boolean isPrime(int n) {
+    if (n <= 1) return false;
+    boolean[] prime = new boolean[n + 1];
+    Arrays.fill(prime, true);
+    prime[0] = prime[1] = false;
+    for (int i = 2; i * i <= n; i++) {
+        if (prime[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                prime[j] = false;
+            }
+        }
+    }
+    return prime[n];
+}
+"
+Check for Prime Number,"import java.util.stream.IntStream;
+
+public boolean isPrime(int n) {
+    if (n <= 1) return false;
+    return IntStream.rangeClosed(2, (int) Math.sqrt(n))
+                    .noneMatch(i -> n % i == 0);
+}
+"
+Check for Prime Number,"public boolean isPrime(int n) {
+    if (n <= 1) return false;
+    if (n == 2 || n == 3) return true;
+    if (n % 2 == 0 || n % 3 == 0) return false;
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0) return false;
+    }
+    return true;
+}
+"
+List Comprehension for Even Numbers,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> filterEvenNumbers(List<Integer> list) {
+    List<Integer> result = new ArrayList<>();
+    for (int num : list) {
+        if (num % 2 == 0) {
+            result.add(num);
+        }
+    }
+    return result;
+}
+"
+List Comprehension for Even Numbers,"import java.util.List;
+import java.util.stream.Collectors;
+
+public List<Integer> filterEvenNumbers(List<Integer> list) {
+    return list.stream()
+               .filter(num -> num % 2 == 0)
+               .collect(Collectors.toList());
+}
+"
+List Comprehension for Even Numbers,"import java.util.List;
+
+public List<Integer> filterEvenNumbers(List<Integer> list) {
+    list.removeIf(num -> num % 2 != 0);
+    return list;
+}
+"
+List Comprehension for Even Numbers,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> filterEvenNumbers(List<Integer> list) {
+    List<Integer> result = new ArrayList<>();
+    list.forEach(num -> {
+        if (num % 2 == 0) result.add(num);
+    });
+    return result;
+}
+"
+List Comprehension for Even Numbers,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> filterEvenNumbers(List<Integer> list, int index) {
+    if (index == list.size()) return new ArrayList<>();
+    List<Integer> result = filterEvenNumbers(list, index + 1);
+    if (list.get(index) % 2 == 0) {
+        result.add(0, list.get(index));
+    }
+    return result;
+}
+
+public List<Integer> filterEvenNumbers(List<Integer> list) {
+    return filterEvenNumbers(list, 0);
+}
+"
+Find the Length of a List,"import java.util.List;
+
+public int findLength(List<Integer> list) {
+    return list.size();
+}
+"
+Find the Length of a List,"import java.util.List;
+
+public int findLength(List<Integer> list) {
+    int count = 0;
+    for (int ignored : list) {
+        count++;
+    }
+    return count;
+}
+"
+Find the Length of a List,"import java.util.List;
+
+public int findLength(List<Integer> list) {
+    if (list.isEmpty()) return 0;
+    return 1 + findLength(list.subList(1, list.size()));
+}
+"
+Find the Length of a List,"import java.util.List;
+
+public long findLength(List<Integer> list) {
+    return list.stream().count();
+}
+"
+Find the Length of a List,"import java.util.List;
+
+public int findLength(List<Integer> list) {
+    final int[] count = {0};
+    list.forEach(item -> count[0]++);
+    return count[0];
+}
+"
+Flatten a Nested List,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> flatten(List<?> nestedList) {
+    List<Integer> flatList = new ArrayList<>();
+    for (Object element : nestedList) {
+        if (element instanceof List) {
+            flatList.addAll(flatten((List<?>) element));
+        } else {
+            flatList.add((Integer) element);
+        }
+    }
+    return flatList;
+}
+"
+Flatten a Nested List,"import java.util.List;
+import java.util.stream.Collectors;
+
+public List<Integer> flatten(List<?> nestedList) {
+    return nestedList.stream()
+                     .flatMap(element -> element instanceof List ?
+                         flatten((List<?>) element).stream() :
+                         Stream.of((Integer) element))
+                     .collect(Collectors.toList());
+}
+"
+Flatten a Nested List,"import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public List<Integer> flatten(List<?> nestedList) {
+    List<Integer> flatList = new ArrayList<>();
+    Stack<Object> stack = new Stack<>();
+    stack.addAll(nestedList);
+
+    while (!stack.isEmpty()) {
+        Object element = stack.pop();
+        if (element instanceof List) {
+            stack.addAll((List<?>) element);
+        } else {
+            flatList.add((Integer) element);
+        }
+    }
+
+    return flatList;
+}
+"
+Flatten a Nested List,"import java.util.ArrayList;
+import java.util.List;
+
+public List<Integer> flatten(List<?> nestedList) {
+    List<Integer> flatList = new ArrayList<>();
+    for (Object element : nestedList) {
+        if (element instanceof List) {
+            flatList.addAll(flatten((List<?>) element));
+        } else {
+            flatList.add((Integer) element);
+        }
+    }
+    return flatList;
+}
+"
+Flatten a Nested List,"import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public List<Integer> flatten(List<?> nestedList) {
+    List<Integer> flatList = new ArrayList<>();
+    Queue<Object> queue = new LinkedList<>(nestedList);
+
+    while (!queue.isEmpty()) {
+        Object element = queue.poll();
+        if (element instanceof List) {
+            queue.addAll(0, (List<?>) element);
+        } else {
+            flatList.add((Integer) element);
+        }
+    }
+
+    return flatList;
+}
+"
+Check if List is Sorted,"public boolean isSorted(int[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}"
+Check if List is Sorted,"public boolean isSorted(int[] arr) {
+    return isSortedHelper(arr, 0); // Start the recursive check from index 0
+}
+
+private boolean isSortedHelper(int[] arr, int index) {
+    if (index == arr.length - 1) {
+        return true; // Base case: if we reach the last element, the array is sorted
+    }
+    return arr[index] <= arr[index + 1] && isSortedHelper(arr, index + 1);
+}
+"
+Check if List is Sorted,"public boolean isSorted(int[] arr) {
+    return IntStream.range(0, arr.length - 1).allMatch(i -> arr[i] <= arr[i + 1]);
+}"
+Check if List is Sorted,"public boolean isSorted(int[] arr) {
+    Stack<Integer> stack = new Stack<>();
+    for (int num : arr) {
+        if (!stack.isEmpty() && stack.peek() > num) {
+            return false;
+        }
+        stack.push(num);
+    }
+    return true;
+}"
+Check if List is Sorted,"public boolean isSorted(int[] arr) {
+    int[] sortedArr = arr.clone();
+    Arrays.sort(sortedArr);
+    return Arrays.equals(arr, sortedArr);
+}"
+Calculate GCD of Two Numbers,"public int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}"
+Calculate GCD of Two Numbers,"public int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}"
+Calculate GCD of Two Numbers,"public int gcd(int a, int b) {
+    if (a == b) return a;
+    if (a == 0) return b;
+    if (b == 0) return a;
+   
+    if ((a & 1) == 0) { // a is even
+        return (b & 1) == 0 ? gcd(a >> 1, b >> 1) << 1 : gcd(a >> 1, b);
+    } else {
+        return (b & 1) == 0 ? gcd(a, b >> 1) : gcd(b, Math.abs(a - b));
+    }
+}"
+Calculate GCD of Two Numbers,"import java.math.BigInteger;
+
+public int gcd(int a, int b) {
+    return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue();
+}"
+Calculate GCD of Two Numbers,"public int extendedGcd(int a, int b, int[] xy) {
+    if (b == 0) {
+        xy[0] = 1;
+        xy[1] = 0;
+        return a;
+    }
+    int[] xyTemp = new int[2];
+    int gcd = extendedGcd(b, a % b, xyTemp);
+    xy[0] = xyTemp[1];
+    xy[1] = xyTemp[0] - (a / b) * xyTemp[1];
+    return gcd;
+}"
+Transpose a Matrix,"public int[][] transpose(int[][] matrix) {
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+    int[][] transposed = new int[cols][rows];
+   
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            transposed[j][i] = matrix[i][j];
+        }
+    }
+    return transposed;
+}"
+Transpose a Matrix,"public void transposeInPlace(int[][] matrix) {
+    int n = matrix.length;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+}"
+Transpose a Matrix,"public class MatrixUtils {
+
+    public static int[][] transposeRecursively(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) {
+            return new int[0][0]; // Handle null or empty matrix
+        }
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] transposed = new int[cols][rows];
+        transposeHelper(matrix, transposed, 0, 0);
+        return transposed;
+    }
+
+    private static void transposeHelper(int[][] matrix, int[][] transposed, int i, int j) {
+        if (i >= matrix.length) {
+            return;         }
+        // Fill the transposed matrix
+        transposed[j][i] = matrix[i][j];
+        // Move to the next element
+        if (j < matrix[0].length - 1) {
+            transposeHelper(matrix, transposed, i, j + 1);
+        } else {
+            transposeHelper(matrix, transposed, i + 1, 0);
+        }
+    }
+}"
+Transpose a Matrix,"public int[][] transposeWithNewMatrix(int[][] matrix) {
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+    int[][] result = new int[cols][rows];
+   
+    for (int row = 0; row < rows; row++) {
+        for (int col = 0; col < cols; col++) {
+            result[col][row] = matrix[row][col];
+        }
+    }
+    return result;
+}"
+Transpose a Matrix,"public List<List<Integer>> transpose(List<List<Integer>> matrix) {
+    int rows = matrix.size();
+    int cols = matrix.get(0).size();
+    List<List<Integer>> transposed = new ArrayList<>(cols);
+   
+    for (int i = 0; i < cols; i++) {
+        List<Integer> newRow = new ArrayList<>(rows);
+        for (int j = 0; j < rows; j++) {
+            newRow.add(matrix.get(j).get(i));
+        }
+        transposed.add(newRow);
+    }
+    return transposed;
+}"
+Merge Two Sorted Lists,"public List<Integer> mergeSortedLists(List<Integer> list1, List<Integer> list2) {
+    List<Integer> mergedList = new ArrayList<>();
+    int i = 0, j = 0;
+   
+    while (i < list1.size() && j < list2.size()) {
+        if (list1.get(i) < list2.get(j)) {
+            mergedList.add(list1.get(i++));
+        } else {
+            mergedList.add(list2.get(j++));
+        }
+    }
+    mergedList.addAll(list1.subList(i, list1.size()));
+    mergedList.addAll(list2.subList(j, list2.size()));
+   
+    return mergedList;
+}"
+Merge Two Sorted Lists,"public List<Integer> mergeSortedLists(List<Integer> list1, List<Integer> list2) {
+    return Stream.concat(list1.stream(), list2.stream())
+                 .sorted()
+                 .collect(Collectors.toList());
+}"
+Merge Two Sorted Lists,"public List<Integer> mergeSortedLists(List<Integer> list1, List<Integer> list2) {
+    if (list1.isEmpty()) return list2;
+    if (list2.isEmpty()) return list1;
+   
+    if (list1.get(0) < list2.get(0)) {
+        return Stream.concat(Stream.of(list1.get(0)), mergeSortedLists(list1.subList(1, list1.size()), list2).stream())
+                     .collect(Collectors.toList());
+    } else {
+        return Stream.concat(Stream.of(list2.get(0)), mergeSortedLists(list1, list2.subList(1, list2.size())).stream())
+                     .collect(Collectors.toList());
+    }
+}"
+Merge Two Sorted Lists,"public List<Integer> mergeSortedLists(List<Integer> list1, List<Integer> list2) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    pq.addAll(list1);
+    pq.addAll(list2);
+   
+    List<Integer> result = new ArrayList<>();
+    while (!pq.isEmpty()) {
+        result.add(pq.poll());
+    }
+    return result;
+}"
+Merge Two Sorted Lists,"public List<Integer> mergeSortedLists(LinkedList<Integer> list1, LinkedList<Integer> list2) {
+    List<Integer> mergedList = new ArrayList<>();
+   
+    while (!list1.isEmpty() && !list2.isEmpty()) {
+        if (list1.peek() < list2.peek()) {
+            mergedList.add(list1.poll());
+        } else {
+            mergedList.add(list2.poll());
+        }
+    }
+    mergedList.addAll(list1);
+    mergedList.addAll(list2);
+   
+    return mergedList;
+}"
+Check if Substring Exists,"public boolean isSubstring(String str, String sub) {
+    return str.contains(sub);
+}"
+Check if Substring Exists,"public boolean isSubstring(String str, String sub) {
+    return str.indexOf(sub) != -1;
+}"
+Check if Substring Exists,"public boolean isSubstring(String str, String sub) {
+    int n = str.length(), m = sub.length();
+    for (int i = 0; i <= n - m; i++) {
+        if (str.substring(i, i + m).equals(sub)) {
+            return true;
+        }
+    }
+    return false;
+}"
+Check if Substring Exists,"public boolean isSubstringKMP(String str, String sub) {
+    int[] lps = computeLPS(sub);
+    int i = 0, j = 0;
+   
+    while (i < str.length()) {
+        if (sub.charAt(j) == str.charAt(i)) {
+            i++;
+            j++;
+        }
+        if (j == sub.length()) {
+            return true;
+        } else if (i < str.length() && sub.charAt(j) != str.charAt(i)) {
+            if (j != 0) {
+                j = lps[j - 1];
+            } else {
+                i++;
+            }
+        }
+    }
+    return false;
+}
+
+private int[] computeLPS(String pattern) {
+    int len = 0;
+    int i = 1;
+    int[] lps = new int[pattern.length()];
+   
+    while (i < pattern.length()) {
+        if (pattern.charAt(i) == pattern.charAt(len)) {
+            lps[i++] = ++len;
+        } else {
+            if (len != 0) {
+                len = lps[len - 1];
+            } else {
+                lps[i++] = 0;
+            }
+        }
+    }
+    return lps;
+}"
+Check if Substring Exists,"public boolean isSubstring(String text, String pattern) {
+    int d = 256; // Number of characters in input alphabet
+    int q = 101; // A prime number
+    int n = text.length();
+    int m = pattern.length();
+    int p = 0, t = 0, h = 1;
+   
+    for (int i = 0; i < m - 1; i++) {
+        h = (h * d) % q;
+    }
+   
+    for (int i = 0; i < m; i++) {
+        p = (d * p + pattern.charAt(i)) % q;
+        t = (d * t + text.charAt(i)) % q;
+    }
+   
+    for (int i = 0; i <= n - m; i++) {
+        if (p == t) {
+            if (text.substring(i, i + m).equals(pattern)) {
+                return true;
+            }
+        }
+       
+        if (i < n - m) {
+            t = (d * (t - text.charAt(i) * h) + text.charAt(i + m)) % q;
+            if (t < 0) {
+                t += q;
+            }
+        }
+    }
+    return false;
+}"
+Find Intersection of Two Lists,"public class Intersection {
+    public static List<Integer> getIntersection(List<Integer> list1, List<Integer> list2) {
+        List<Integer> intersection = new ArrayList<>();
+        for (Integer item : list1) {
+            if (list2.contains(item) && !intersection.contains(item)) {
+                intersection.add(item);
+            }
+        }
+        return intersection;
+    }
+}"
+Find Intersection of Two Lists,"public class Intersection {
+    public static Set<Integer> getIntersection(Set<Integer> set1, Set<Integer> set2) {
+        Set<Integer> intersection = new HashSet<>(set1);
+        intersection.retainAll(set2);
+        return intersection;
+    }
+}"
+Find Intersection of Two Lists,"public class Intersection {
+    public static List<Integer> getIntersection(List<Integer> list1, List<Integer> list2) {
+        return list1.stream()
+            .filter(list2::contains)
+            .distinct()
+            .collect(Collectors.toList());
+    }
+}"
+Find Intersection of Two Lists,"public class Intersection {
+    public static List<Integer> getIntersection(List<Integer> list1, List<Integer> list2) {
+        List<Integer> intersection = new ArrayList<>(list1);
+        intersection.retainAll(list2);
+        return intersection;
+    }
+}"
+Find Intersection of Two Lists,"public class Intersection {
+    public static Collection<Integer> getIntersection(Collection<Integer> col1, Collection<Integer> col2) {
+        return CollectionUtils.intersection(col1, col2);
+    }
+}"
+Calculate the Power of a Number,"public class PowerCalculation {
+    public static int calculatePower(int base, int exponent) {
+        int result = 1;
+        for (int i = 0; i < exponent; i++) {
+            result *= base;
+        }
+        return result;
+    }
+}"
+Calculate the Power of a Number,"public class PowerCalculation {
+    public static int calculatePower(int base, int exponent) {
+        if (exponent == 0) {
+            return 1;
+        }
+        return base * calculatePower(base, exponent - 1);
+    }
+}"
+Calculate the Power of a Number,"public class PowerCalculation {
+    public static BigInteger calculatePower(BigInteger base, BigInteger exponent) {
+        return base.pow(exponent.intValue());
+    }
+}"
+Calculate the Power of a Number,"public class PowerCalculation {
+    public static int calculatePower(int base, int exponent) {
+        return IntStream.range(0, exponent)
+            .reduce(1, (acc, i) -> acc * base);
+    }
+}"
+Calculate the Power of a Number,"public class PowerCalculation {
+    public static double calculatePower(double base, double exponent) {
+        return Math.pow(base, exponent);
+    }
+}"
+Convert String to Integer,"public class StringToInteger {
+    public static int convertStringToInteger(String str) {
+        return Integer.parseInt(str);
+    }
+}"
+Convert String to Integer,"public class StringToInteger {
+    public static int convertStringToInteger(String str) {
+        return Integer.valueOf(str);
+    }
+}"
+Convert String to Integer,"public class StringToInteger {
+    public static int convertStringToInteger(String str) {
+        Scanner scanner = new Scanner(str);
+        int number = scanner.nextInt();
+        scanner.close();
+        return number;
+    }
+}"
+Convert String to Integer,"public class StringToInteger {
+    public static int convertStringToInteger(String str) {
+        try {
+            Number number = NumberFormat.getInstance().parse(str);
+            return number.intValue();
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(""Invalid input string"", e);
+        }
+    }
+}"
+Convert String to Integer,"public class StringToInteger {
+    public static int convertStringToInteger(String str) {
+        int number = 0;
+        for (char c : str.toCharArray()) {
+            number = number * 10 + Character.getNumericValue(c);
+        }
+        return number;
+    }
+}"
+Count Words in a String,"public class WordCount {
+    public static int countWords(String str) {
+        return str.split(""\\s+"").length;
+    }
+}"
+Count Words in a String,"import java.util.Scanner;
+
+public class WordCount {
+    public static int countWords(String str) {
+        Scanner scanner = new Scanner(str);
+        int wordCount = 0;
+        while (scanner.hasNext()) {
+            scanner.next();
+            wordCount++;
+        }
+        scanner.close();
+        return wordCount;
+    }
+}"
+Count Words in a String,"import java.util.Arrays;
+
+public class WordCount {
+    public static long countWords(String str) {
+        return Arrays.stream(str.split(""\\s+"")).count();
+    }
+}"
+Count Words in a String,"public class WordCount {
+    public static int countWords(String str) {
+        Pattern pattern = Pattern.compile(""\\w+"");
+        Matcher matcher = pattern.matcher(str);
+        int wordCount = 0;
+        while (matcher.find()) {
+            wordCount++;
+        }
+        return wordCount;
+    }
+}"
+Count Words in a String,"public class WordCount {
+    public static int countWords(String str) {
+        int wordCount = 0;
+        boolean inWord = false;
+        for (char c : str.toCharArray()) {
+            if (Character.isWhitespace(c)) {
+                if (inWord) {
+                    wordCount++;
+                    inWord = false;
+                }
+            } else {
+                inWord = true;
+            }
+        }
+        if (inWord) {
+            wordCount++;
+        }
+        return wordCount;
+    }
+}"
+Generate a List of Squares,"public static List<Integer> generateSquares(int n) {
+    List<Integer> squares = new ArrayList<>();
+    for (int i = 1; i <= n; i++) {
+        squares.add(i * i);
+    }
+    return squares;
+}"
+Generate a List of Squares,"public static List<Integer> generateSquares(int n) {
+    List<Integer> squares = new ArrayList<>();
+    int i = 1;
+    while (i <= n) {
+        squares.add(i * i);
+        i++;
+    }
+    return squares;
+}"
+Generate a List of Squares,"public static List<Integer> generateSquares(int n) {
+        return generateSquaresWithRecursionHelper(n, new ArrayList<>());
+}
+
+private static List<Integer> generateSquaresWithRecursionHelper(int n, List<Integer> squares) {
+    if (n == 0) {
+        return squares;
+    }
+    generateSquaresWithRecursionHelper(n - 1, squares);
+    squares.add(n * n);
+    return squares;
+}"
+Generate a List of Squares,"public static List<Integer> generateSquares(int n) {
+        return IntStream.rangeClosed(1, n)
+                        .map(i -> i * i)
+                        .boxed()
+                        .collect(Collectors.toList());
+}"
+Generate a List of Squares,"public static List<Integer> generateSquares(int n) {
+    List<Integer> squares = new ArrayList<>();
+    int i = 1;
+    do {
+        squares.add(i * i);
+        i++;
+    } while (i <= n);
+    return squares;
+}"
+Find Second Largest Element,"public static int findSecondLargest(int[] arr) {
+    if (arr.length < 2) {
+        throw new IllegalArgumentException(""Array must contain at least two elements."");
+    }
+
+    int first = Integer.MIN_VALUE;
+    int second = Integer.MIN_VALUE;
+
+    for (int num : arr) {
+        if (num > first) {
+            second = first;
+            first = num;
+        } else if (num > second && num != first) {
+            second = num;
+        }
+    }
+
+    if (second == Integer.MIN_VALUE) {
+        throw new IllegalArgumentException(""No second largest element found."");
+    }
+
+    return second;
+}"
+Find Second Largest Element,"public static int findSecondLargest(int[] arr) {
+    if (arr.length < 2) {
+        throw new IllegalArgumentException(""Array must contain at least two elements."");
+    }
+
+    Arrays.sort(arr);
+    for (int i = arr.length - 2; i >= 0; i--) {
+        if (arr[i] != arr[arr.length - 1]) {
+            return arr[i];
+        }
+    }
+
+    throw new IllegalArgumentException(""No second largest element found."");
+}"
+Find Second Largest Element,"public static int findSecondLargest(int[] arr) {
+    if (arr.length < 2) {
+        throw new IllegalArgumentException(""Array must contain at least two elements."");
+    }
+
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>(2);
+    for (int num : arr) {
+        if (!minHeap.contains(num)) {
+            minHeap.offer(num);
+            if (minHeap.size() > 2) {
+                minHeap.poll();
+            }
+        }
+    }
+
+    if (minHeap.size() < 2) {
+        throw new IllegalArgumentException(""No second largest element found."");
+    }
+
+    return minHeap.poll();
+}"
+Find Second Largest Element,"public static int findSecondLargest(int[] arr) {
+    return Arrays.stream(arr)
+                 .distinct()
+                 .boxed()
+                 .sorted(Collections.reverseOrder())
+                 .skip(1)
+                 .findFirst()
+                 .orElseThrow(() -> new IllegalArgumentException(""No second largest element found.""));
+}"
+Find Second Largest Element,"public static int findSecondLargest(int[] arr) {
+    return findSecondLargestRecHelper(arr, arr.length - 1, Integer.MIN_VALUE, Integer.MIN_VALUE);
+}
+
+private static int findSecondLargestRecHelper(int[] arr, int index, int first, int second) {
+    if (index < 0) {
+        if (second == Integer.MIN_VALUE) {
+            throw new IllegalArgumentException(""No second largest element found."");
+        }
+        return second;
+    }
+
+    if (arr[index] > first) {
+        second = first;
+        first = arr[index];
+    } else if (arr[index] > second && arr[index] != first) {
+        second = arr[index];
+    }
+
+    return findSecondLargestRecHelper(arr, index - 1, first, second);
+}"
+Sort a List of Strings by Length,"public static List<String> sortByLength(List<String> list) {
+    list.sort(new Comparator<String>() {
+        @Override
+        public int compare(String s1, String s2) {
+            return Integer.compare(s1.length(), s2.length());
+        }
+    });
+    return list;
+}"
+Sort a List of Strings by Length,"public static List<String> sortByLength(List<String> list) {
+    list.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+    return list;
+}"
+Sort a List of Strings by Length,"public static List<String> sortByLength(List<String> list) {
+    return list.stream()
+               .sorted(Comparator.comparingInt(String::length))
+               .collect(Collectors.toList());
+}"
+Sort a List of Strings by Length,"public static List<String> sortByLength(List<String> list) {
+    int n = list.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (list.get(j).length() > list.get(j + 1).length()) {
+                // Swap list[j] and list[j+1]
+                String temp = list.get(j);
+                list.set(j, list.get(j + 1));
+                list.set(j + 1, temp);
+            }
+        }
+    }
+    return list;
+}"
+Sort a List of Strings by Length,"public static List<String> sortByLength(List<String> list) {
+    quickSort(list, 0, list.size() - 1);
+    return list;
+}
+
+private static void quickSort(List<String> list, int low, int high) {
+    if (low < high) {
+        int pi = partition(list, low, high);
+        quickSort(list, low, pi - 1);
+        quickSort(list, pi + 1, high);
+    }
+}
+
+private static int partition(List<String> list, int low, int high) {
+    int pivotLength = list.get(high).length();
+    int i = (low - 1);
+    for (int j = low; j < high; j++) {
+        if (list.get(j).length() < pivotLength) {
+            i++;
+            String temp = list.get(i);
+            list.set(i, list.get(j));
+            list.set(j, temp);
+        }
+    }
+    String temp = list.get(i + 1);
+    list.set(i + 1, list.get(high));
+    list.set(high, temp);
+    return i + 1;
+}"
+Remove All Whitespace from a String,"public static String removeWhitespace(String input) {
+    return input.replaceAll(""\\s"", """");
+}"
+Remove All Whitespace from a String,"public static String removeWhitespace(String input) {
+    StringBuilder result = new StringBuilder();
+    for (char c : input.toCharArray()) {
+        if (!Character.isWhitespace(c)) {
+            result.append(c);
+        }
+    }
+    return result.toString();
+}"
+Remove All Whitespace from a String,"public static String removeWhitespace(String input) {
+    return input.chars()
+                .filter(c -> !Character.isWhitespace(c))
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+}"
+Remove All Whitespace from a String,"public static String removeWhitespacea(String input) {
+    String[] whitespaces = {"" "", ""\t"", ""\n"", ""\r""};
+    for (String whitespace : whitespaces) {
+        input = input.replace(whitespace, """");
+    }
+    return input;
+}"
+Remove All Whitespace from a String,"public static String removeWhitespace(String input) {
+    return java.util.regex.Pattern.compile(""\\s"")
+                                  .matcher(input)
+                                  .replaceAll("""");
+}"
+Check if List Contains Duplicates,"public static <T> boolean hasDuplicates(List<T> list) {
+    Set<T> set = new HashSet<>();
+    for (T element : list) {
+        if (!set.add(element)) {
+            return true;
+        }
+    }
+    return false;
+}"
+Check if List Contains Duplicates,"public static <T> boolean hasDuplicates(List<T> list) {
+    for (int i = 0; i < list.size(); i++) {
+        for (int j = i + 1; j < list.size(); j++) {
+            if (list.get(i).equals(list.get(j))) {
+                return true;
+            }
+        }
+    }
+    return false;
+}"
+Check if List Contains Duplicates,"public static <T> boolean hasDuplicates(List<T> list) {
+    return list.size() != list.stream().distinct().count();
+}"
+Check if List Contains Duplicates,"public static <T> boolean hasDuplicates(List<T> list) {
+    java.util.Map<T, Integer> map = new java.util.HashMap<>();
+    for (T element : list) {
+        map.put(element, map.getOrDefault(element, 0) + 1);
+        if (map.get(element) > 1) {
+            return true;
+        }
+    }
+    return false;
+}"
+Check if List Contains Duplicates,"public static <T> boolean hasDuplicates(List<T> list) {
+    for (T element : list) {
+        if (java.util.Collections.frequency(list, element) > 1) {
+            return true;
+        }
+    }
+    return false;
+}"
+Calculate Sum of Digits,"public static int sumOfDigits(int number) {
+    if (number == 0) {
+        return 0;
+    }
+    return number % 10 + sumOfDigits(number / 10);
+}"
+Calculate Sum of Digits,"public static int sumOfDigits(int number) {
+    int sum = 0;
+    while (number != 0) {
+        sum += number % 10;
+        number /= 10;
+    }
+    return sum;
+}"
+Calculate Sum of Digits,"public static int sumOfDigits(int number) {
+    String numStr = String.valueOf(number);
+    int sum = 0;
+    for (char c : numStr.toCharArray()) {
+        sum += Character.getNumericValue(c);
+    }
+    return sum;
+}"
+Calculate Sum of Digits,"public static int sumOfDigits(int number) {
+    return String.valueOf(number)
+                 .chars()
+                 .map(Character::getNumericValue)
+                 .sum();
+}"
+Calculate Sum of Digits,"public static int sumOfDigits(int number) {
+    int sum = 0;
+    for (; number != 0; number /= 10) {
+        sum += number % 10;
+    }
+    return sum;
+}"
+Find Missing Number in a List,"public static int findMissing(int[] arr) {
+    int n = arr.length + 1;
+    int expectedSum = n * (n + 1) / 2;
+    int actualSum = Arrays.stream(arr).sum();
+    return expectedSum - actualSum;
+}"
+Find Missing Number in a List,"public static int findMissing(int[] arr) {
+    int n = arr.length + 1;
+    int xor1 = 1;
+    for (int i = 2; i <= n; i++) {
+        xor1 ^= i;
+    }
+
+    int xor2 = arr[0];
+    for (int i = 1; i < arr.length; i++) {
+        xor2 ^= arr[i];
+    }
+
+    return xor1 ^ xor2;
+}"
+Find Missing Number in a List,"public static int findMissing(int[] arr) {
+    Set<Integer> set = new HashSet<>();
+    for (int num : arr) {
+        set.add(num);
+    }
+
+    for (int i = 1; i <= arr.length + 1; i++) {
+        if (!set.contains(i)) {
+            return i;
+        }
+    }
+
+    return -1;
+}"
+Find Missing Number in a List,"public static int findMissing(int[] arr) {
+    Arrays.sort(arr);
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] != i + 1) {
+            return i + 1;
+        }
+    }
+    return arr.length + 1;
+}"
+Find Missing Number in a List,"public static int findMissing(int[] arr) {
+    Arrays.sort(arr);
+    int left = 0, right = arr.length - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == mid + 1) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return left + 1;
+}"
+Check if Two Strings are Anagrams,"public static boolean areAnagrams(String str1, String str2) {
+    if (str1.length() != str2.length()) {
+        return false;
+    }
+    char[] arr1 = str1.toCharArray();
+    char[] arr2 = str2.toCharArray();
+    Arrays.sort(arr1);
+    Arrays.sort(arr2);
+    return Arrays.equals(arr1, arr2);
+}"
+Check if Two Strings are Anagrams,"public static boolean areAnagrams(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+        int[] charCount = new int[26];
+
+        for (int i = 0; i < str1.length(); i++) {
+            charCount[str1.charAt(i) - 'a']++;
+            charCount[str2.charAt(i) - 'a']--;
+        }
+
+        for (int count : charCount) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }"
+Check if Two Strings are Anagrams,"public static boolean areAnagrams(String str1, String str2) {
+    if (str1.length() != str2.length()) {
+        return false;
+    }
+    Map<Character, Integer> charCountMap = new HashMap<>();
+
+    for (char c : str1.toCharArray()) {
+        charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+    }
+
+    for (char c : str2.toCharArray()) {
+        if (!charCountMap.containsKey(c)) {
+            return false;
+        }
+        charCountMap.put(c, charCountMap.get(c) - 1);
+        if (charCountMap.get(c) == 0) {
+            charCountMap.remove(c);
+        }
+    }
+
+    return charCountMap.isEmpty();
+}"
+Check if Two Strings are Anagrams,"public static boolean areAnagrams(String str1, String str2) {
+    if (str1.length() != str2.length()) {
+        return false;
+    }
+    return str1.chars().sorted().toArray().equals(str2.chars().sorted().toArray());
+}"
+Check if Two Strings are Anagrams,"public static boolean areAnagrams(String str1, String str2) {
+    if (str1.length() != str2.length()) {
+        return false;
+    }
+    
+    Map<Character, Integer> frequencyMap = new HashMap<>();
+    
+    // Count the frequency of each character in str1
+    for (char c : str1.toCharArray()) {
+        frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+    }
+    
+    // Subtract the frequency of each character in str2
+    for (char c : str2.toCharArray()) {
+        if (!frequencyMap.containsKey(c) || frequencyMap.get(c) == 0) {
+            return false;
+        }
+        frequencyMap.put(c, frequencyMap.get(c) - 1);
+    }
+    
+    return true;
+}"
+Convert List of Tuples to Dictionary,"public static <K, V> Map<K, V> convert(List<Pair<K, V>> list) {
+    Map<K, V> map = new HashMap<>();
+    for (Pair<K, V> pair : list) {
+        map.put(pair.getKey(), pair.getValue());
+    }
+    return map; 
+}"
+Convert List of Tuples to Dictionary,"public static <K, V> Map<K, V> convert(List<Pair<K, V>> list) {
+    return list.stream()
+               .collect(Collectors.toMap(pair -> pair.key, pair -> pair.value));
+}"
+Convert List of Tuples to Dictionary,"public static <K, V> Map<K, V> convert(List<Pair<K, V>> list) {
+    Map<K, V> map = new LinkedHashMap<>();
+    for (Pair<K, V> pair : list) {
+        map.put(pair.key, pair.value);
+    }
+    return map;
+}"
+Convert List of Tuples to Dictionary,"public static <K, V> Map<K, V> convert(List<Pair<K, V>> list) {
+    Map<K, V> map = new HashMap<>();
+    list.forEach(pair -> map.put(pair.key, pair.value));
+    return map;
+}"
+Convert List of Tuples to Dictionary,"public static <K, V> Map<K, V> convert(List<Pair<K, V>> list) {
+    Map<K, V> map = new HashMap<>();
+    for (Pair<K, V> pair : list) {
+        map.put(pair.key, pair.value);
+    }
+    return map;
+}
+"
